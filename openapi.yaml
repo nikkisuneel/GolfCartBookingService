@@ -1,0 +1,592 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "Golf Cart Booking API specification",
+    "title": "GolfCartBooking",
+    "version": "1.0"
+  },
+  "schemes": [
+      "https"
+  ],
+  "paths": {
+    "/bookings": {
+      "get": {
+        "tags": [
+            "bookings"
+        ],
+        "summary": "List all bookings",
+        "produces": [
+            "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "$ref": "#/definitions/Bookings"
+            },
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "description": "URI that may access the resource"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "responses": {
+            "default": {
+              "statusCode": "200",
+              "responseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'"
+              }
+            }
+          },
+          "uri": "http://golfcartbooking.execute-api.us-east-1.amazonaws.com/golfcartbooking/bookings",
+          "passthroughBehavior": "when_no_match",
+          "httpMethod": "GET",
+          "type": "http"
+        }
+      },
+      "post": {
+        "tags": [
+            "bookings"
+        ],
+        "operationId": "CreateBooking",
+        "summary": "Create a booking",
+        "consumes": [
+            "application/json"
+        ],
+        "produces": [
+            "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "NewBooking",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/NewBooking"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "$ref": "#/definitions/NewBookingResponse"
+            },
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "description": "URI that may access the resource"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "responses": {
+            "default": {
+              "statusCode": "200",
+              "responseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'"
+              }
+            }
+          },
+          "uri": "http://golfcartbooking.execute-api.us-east-1.amazonaws.com/golfcartbooking/bookings",
+          "passthroughBehavior": "when_no_match",
+          "httpMethod": "POST",
+          "type": "http"
+        }
+      },
+    },
+    ##################################################
+    "/carts": {
+      "get": {
+        "tags": [
+            "carts"
+        ],
+        "summary": "List cart by number",
+        "produces": [
+            "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "cartNumber",
+            "in": "query",
+            "description": "The number of the cart to retrieve",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "$ref": "#/definitions/Cart"
+            },
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "description": "URI that may access the resource"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "responses": {
+            "default": {
+              "statusCode": "200",
+              "responseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'"
+              }
+            }
+          },
+          "uri": "http://golfcartbooking.execute-api.us-east-1.amazonaws.com/golfcartbooking/carts",
+          "passthroughBehavior": "when_no_match",
+          "httpMethod": "GET",
+          "type": "http"
+        }
+      }
+    },
+    "/carts/{cartId}": {
+      "get": {
+        "tags": [
+            "carts"
+        ],
+        "summary": "Info for a specific cart",
+        "operationId": "GetCart",
+        "produces": [
+            "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "cartId",
+            "in": "path",
+            "description": "The id of the cart to retrieve",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "$ref": "#/definitions/Cart"
+            },
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "description": "URI that may access the resource"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "responses": {
+            "default": {
+              "statusCode": "200",
+              "responseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'"
+              }
+            }
+          },
+          "requestParameters": {
+            "integration.request.path.cartId": "method.request.path.cartId"
+          },
+          "uri": "http://golfcartbooking.execute-api.us-east-1.amazonaws.com/golfcartbooking/carts/{cartId}",
+          "passthroughBehavior": "when_no_match",
+          "httpMethod": "GET",
+          "type": "http"
+        }
+      },
+    },
+    ######################################################
+    "/membership": {
+      "get": {
+        "tags": [
+            "membership"
+        ],
+        "summary": "get information about a membership",
+        "produces": [
+            "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "$ref": "#/definitions/Membership"
+            },
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "description": "URI that may access the resource"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "responses": {
+            "default": {
+              "statusCode": "200",
+              "responseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'"
+              }
+            }
+          },
+          "uri": "http://golfcartbooking.execute-api.us-east-1.amazonaws.com/golfcartbooking/membership",
+          "passthroughBehavior": "when_no_match",
+          "httpMethod": "GET",
+          "type": "http"
+        }
+      },
+    },
+  },
+  ###########################################################
+  "definitions": {
+    "Bookings": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/Booking"
+      }
+    },
+    "NewBookingResponse": {
+      "type": "object",
+      "properties": {
+        "booking": {
+          "$ref": "#/definitions/Booking"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "Booking": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "membershipId": {
+          "type": "string"
+        },
+        "bookingDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "cartId": {
+          "type": "integer"
+        },
+        "teeTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "duration": {
+          "type": "number"
+        },
+        "playerCount": {
+          "type": "integer"
+        },
+        "charge": {
+          "type": "number"
+        }
+      }
+    },
+    "NewBooking": {
+      "type": "object",
+      "properties": {
+        "membershipId": {
+          "type": "string"
+        },
+        "bookingData": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "cartId": {
+          "type": "integer"
+        },
+        "teeTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "duration": {
+          "type": "number"
+        },
+        "playerCount": {
+          "type": "integer"
+        },
+        "charge": {
+          "type": "number"
+        }
+      }
+    },
+    ######################################################################
+    "NewCartResponse": {
+      "type": "object",
+      "properties": {
+        "cart": {
+          "$ref": "#/definitions/Cart"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "Cart": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "number": {
+          "type": "integer"
+        },
+        "manufacturer": {
+          "type": "string"
+        },
+        "fuelType": {
+          "type": "integer"
+        },
+        "passengerCount": {
+          "type": "integer"
+        },
+        "rate": {
+          "type": "number"
+        }
+      }
+    },
+    "NewCart": {
+      "type": "object",
+      "properties": {
+        "number": {
+          "type": "integer"
+        },
+        "manufacturer": {
+          "type": "string"
+        },
+        "fuelType": {
+          "type": "integer"
+        },
+        "passengerCount": {
+          "type": "integer"
+        },
+        "rate": {
+          "type": "number"
+        }
+      }
+    },
+    ##############################################
+    "Membership": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "fullName": {
+          "type": "integer"
+        },
+        "phone": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "membershipId": {
+          "type": "string"
+        },
+        "membershipType": {
+          "type": "string"
+        },
+        "memberSince": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    }
+  },
+  "x-amazon-apigateway-documentation": {
+    "version": "v2.1",
+    "createdDate": "2021-02-17T07:03:59Z",
+    "documentationParts": [
+      {
+        "location": {
+          "type": "API"
+        },
+        "properties": {
+          "info": {
+            "description": "Golf Cart Booking API"
+          }
+        }
+      },
+      {
+        "location": {
+          "type": "METHOD",
+          "path": "/bookings",
+          "method": "GET"
+        },
+        "properties": {
+          "tags": [
+              "bookings"
+          ],
+          "summary": "List all bookings"
+        }
+      },
+      {
+        "location": {
+          "type": "METHOD",
+          "path": "/bookings",
+          "method": "POST"
+        },
+        "properties": {
+          "tags": [
+              "bookings"
+          ],
+          "summary": "Create a booking"
+        }
+      },
+      {
+        "location": {
+          "type": "REQUEST_BODY",
+          "path": "/bookings",
+          "method": "POST"
+        },
+        "properties": {
+          "description": "Booking object that needs to be added"
+        }
+      },
+      {
+        "location": {
+          "type": "RESPONSE",
+          "method": "*",
+          "statusCode": "200"
+        },
+        "properties": {
+          "description": "Successful operation"
+        }
+      },
+      {
+        "location": {
+          "type": "RESPONSE_HEADER",
+          "method": "OPTIONS",
+          "statusCode": "200",
+          "name": "Access-Control-Allow-Methods"
+        },
+        "properties": {
+          "description": "Method or methods allowed when accessing the resource"
+        }
+      },
+      {
+        "location": {
+          "type": "RESPONSE_HEADER",
+          "method": "*",
+          "statusCode": "200",
+          "name": "Access-Control-Allow-Origin"
+        },
+        "properties": {
+          "description": "URI that may access the resource"
+        }
+      },
+      {
+        "location": {
+          "type": "RESPONSE_HEADER",
+          "method": "GET",
+          "statusCode": "200",
+          "name": "Content-Type"
+        },
+        "properties": {
+          "description": "Media type of request"
+        }
+      },
+      {
+        "location": {
+          "type": "METHOD",
+          "path": "/carts/{cartId}",
+          "method": "GET"
+        },
+        "properties": {
+          "tags": [
+              "carts"
+          ],
+          "summary": "Info for a cart, given its id"
+        }
+      },
+      {
+        "location": {
+          "type": "QUERY_PARAMETER",
+          "path": "/carts",
+          "method": "GET",
+          "name": "cartNumber"
+        },
+        "properties": {
+          "description": "The number of the cart to retrieve"
+        }
+      },
+      {
+        "location": {
+          "type": "RESPONSE",
+          "method": "*",
+          "statusCode": "200"
+        },
+        "properties": {
+          "description": "Successful operation"
+        }
+      },
+      {
+        "location": {
+          "type": "RESPONSE_HEADER",
+          "method": "OPTIONS",
+          "statusCode": "200",
+          "name": "Access-Control-Allow-Methods"
+        },
+        "properties": {
+          "description": "Method or methods allowed when accessing the resource"
+        }
+      },
+      {
+        "location": {
+          "type": "RESPONSE_HEADER",
+          "method": "*",
+          "statusCode": "200",
+          "name": "Access-Control-Allow-Origin"
+        },
+        "properties": {
+          "description": "URI that may access the resource"
+        }
+      },
+      {
+        "location": {
+          "type": "RESPONSE_HEADER",
+          "method": "GET",
+          "statusCode": "200",
+          "name": "Content-Type"
+        },
+        "properties": {
+          "description": "Media type of request"
+        }
+      },
+      {
+        "location": {
+          "type": "METHOD",
+          "path": "/membership",
+          "method": "GET"
+        },
+        "properties": {
+          "tags": [
+              "membership"
+          ],
+          "summary": "Info about the membership"
+        }
+      },
+      {
+        "location": {
+          "type": "RESPONSE_HEADER",
+          "method": "GET",
+          "statusCode": "200",
+          "name": "Content-Type"
+        },
+        "properties": {
+          "description": "Media type of request"
+        }
+      }
+    ]
+  }
+}
