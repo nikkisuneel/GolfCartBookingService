@@ -3,4 +3,4 @@
 -- DROP SCHEMA golf_cart_booking ;
 
 CREATE SCHEMA golf_cart_booking
-    AUTHORIZATION <Schema Owner User>;
+    AUTHORIZATION postgres;

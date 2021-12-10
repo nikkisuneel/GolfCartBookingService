@@ -9,6 +9,8 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.time.LocalDateTime;
 import java.util.Base64;
 
@@ -32,5 +34,12 @@ public class Utils {
         JsonObject jo = gsonObj.fromJson(tokenPayload, JsonObject.class);
         String membershipId = jo.get("membership-id").getAsString();
         return membershipId;
+    }
+
+    public static String exceptionStacktraceToString(Exception e) {
+        StringWriter sw = new StringWriter();
+        PrintWriter pw = new PrintWriter(sw);
+        e.printStackTrace(pw);
+        return sw.toString();
     }
 }

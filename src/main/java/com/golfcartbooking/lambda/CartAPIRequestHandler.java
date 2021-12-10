@@ -54,7 +54,8 @@ public class CartAPIRequestHandler implements RequestHandler<APIGatewayProxyRequ
         try {
             ICartDataAccess cartDataAccess = new CartSQLDataAccess();
 
-            if (!request.getQueryStringParameters().isEmpty()) {
+            if (request.getQueryStringParameters() != null
+                   && !request.getQueryStringParameters().isEmpty()) {
                 if (request.getQueryStringParameters().containsKey("cartNumber")) {
                     int cartNumber = Integer.parseInt(request.getQueryStringParameters().get("cartNumber"));
                     Cart cart = cartDataAccess.getCartByNumber(cartNumber);
@@ -66,7 +67,7 @@ public class CartAPIRequestHandler implements RequestHandler<APIGatewayProxyRequ
             } else {
                 String path = request.getPath();
                 Integer id = Integer.parseInt(path.substring(path.lastIndexOf('/') + 1));
-                Cart cart = cartDataAccess.getCartByNumber(id);
+                Cart cart = cartDataAccess.getCart(id);
                 logger.log("response body: " + gsonObj.toJson(cart));
                 response.setBody(gsonObj.toJson(cart));
             }

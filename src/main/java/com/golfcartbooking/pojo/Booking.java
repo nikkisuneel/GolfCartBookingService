@@ -12,7 +12,7 @@ public class Booking {
     private LocalDateTime bookingDate;
     private int cartId;
     private LocalDateTime teeTime;
-    private double duration;
+    private int numberOfRounds;
     private int playerCount;
     private double charge;
 
@@ -22,14 +22,14 @@ public class Booking {
                    LocalDateTime bookingDate,
                    int cartId,
                    LocalDateTime teeTime,
-                   double duration,
+                   int numberOfRounds,
                    int playerCount,
                    double charge) {
         setMembershipId(membershipId);
         setBookingDate(bookingDate);
         setCartId(cartId);
         setTeeTime(teeTime);
-        setDuration(duration);
+        setNumberOfRounds(numberOfRounds);
         setPlayerCount(playerCount);
         setCharge(charge);
     }
@@ -39,10 +39,10 @@ public class Booking {
                    LocalDateTime bookingDate,
                    int cartId,
                    LocalDateTime teeTime,
-                   double duration,
+                   int numberOfRounds,
                    int playerCount,
                    double charge) {
-        this(membershipId, bookingDate, cartId, teeTime, duration, playerCount, charge);
+        this(membershipId, bookingDate, cartId, teeTime, numberOfRounds, playerCount, charge);
         setId(id);
     }
 
@@ -86,15 +86,15 @@ public class Booking {
         this.teeTime = teeTime;
     }
 
-    public double getDuration() {
-        return duration;
+    public int getNumberOfRounds() {
+        return numberOfRounds;
     }
 
-    public void setDuration(double duration) {
-        if (duration <1.0 || duration > 12.0) {
-            throw new IllegalArgumentException("Duration must be between 1.0 and 12.0 hours");
+    public void setNumberOfRounds(int numberOfRounds) {
+        if (numberOfRounds < 1 || numberOfRounds > 3) {
+            throw new IllegalArgumentException("numberofRounds must be between 1 and 3");
         }
-        this.duration = duration;
+        this.numberOfRounds = numberOfRounds;
     }
 
     public int getPlayerCount() {

@@ -9,9 +9,10 @@ import com.amazonaws.services.lambda.runtime.LambdaLogger;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyRequestEvent;
 import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyResponseEvent;
-import com.golfcartbooking.dataaccess.BookingSQLDataAccess;
-import com.golfcartbooking.dataaccess.IBookingDataAccess;
+import com.golfcartbooking.dataaccess.*;
 import com.golfcartbooking.pojo.Booking;
+import com.golfcartbooking.pojo.Cart;
+import com.golfcartbooking.pojo.Member;
 import com.golfcartbooking.util.Utils;
 import com.google.gson.Gson;
 
@@ -58,6 +59,9 @@ public class BookingAPIRequestHandler implements RequestHandler<APIGatewayProxyR
         try {
             String body = request.getBody();
             Booking inputBooking = gsonObj.fromJson(body, Booking.class);
+            String membershipId = Utils.extractMembershipId(request);
+            // Calculate charge
+            calculateCharge(inputBooking, membershipId);
             IBookingDataAccess bookingDataAccess = new BookingSQLDataAccess();
             bookingDataAccess.create(inputBooking);
             Booking createdBooking = bookingDataAccess.getBookingByBookingDate(inputBooking.getBookingDate());
@@ -74,6 +78,21 @@ public class BookingAPIRequestHandler implements RequestHandler<APIGatewayProxyR
         } finally {
             return response;
         }
+    }
+
+    private void calculateCharge(Booking inputBooking, String membershipId) throws SQLException {
+        IMemberDataAccess memberDataAccess = new MemberSQLDataAccess();
+        Member member = memberDataAccess.get(membershipId);
+        ICartDataAccess cartDataAccess = new CartSQLDataAccess();
+        Cart cart = cartDataAccess.getCart(inputBooking.getCartId());
+        double charge = 0;
+        if (!member.getMembershipType().equalsIgnoreCase("Lifetime")) {
+            charge = (cart.getRate() * inputBooking.getNumberOfRounds()) +
+                    (cart.getAdditionalPassengerSurcharge()
+                            * inputBooking.getNumberOfRounds()
+                            * inputBooking.getPlayerCount());
+        }
+        inputBooking.setCharge(charge);
     }
 
     private APIGatewayProxyResponseEvent processGet(APIGatewayProxyRequestEvent request,

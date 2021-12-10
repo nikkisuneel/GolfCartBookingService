@@ -14,19 +14,23 @@ public class Cart {
     private String fuelType;
     private int passengerCount;
     private double rate;
+    private double additionalPassengerSurcharge;
 
     public Cart() {}
 
-    public Cart(int number, String manufacturer, String fuelType, int passengerCount, double rate) {
+    public Cart(int number, String manufacturer, String fuelType, int passengerCount, double rate,
+                double additionalPassengerSurcharge) {
         setNumber(number);
         setFuelType(fuelType);
         setPassengerCount(passengerCount);
         setManufacturer(manufacturer);
         setRate(rate);
+        setAdditionalPassengerSurcharge(additionalPassengerSurcharge);
     }
 
-    public Cart(int id, int number, String manufacturer, String fuelType, int passengerCount, double rate) {
-        this(number, manufacturer, fuelType, passengerCount, rate);
+    public Cart(int id, int number, String manufacturer, String fuelType, int passengerCount,
+                double rate, double additionalPassengerSurcharge) {
+        this(number, manufacturer, fuelType, passengerCount, rate, additionalPassengerSurcharge);
         setId(id);
     }
 
@@ -85,6 +89,14 @@ public class Cart {
             throw new IllegalArgumentException("Passenger count must be greater than 1 and less than 4");
         }
         this.passengerCount = passengerCount;
+    }
+
+    public double getAdditionalPassengerSurcharge() {
+        return additionalPassengerSurcharge;
+    }
+
+    public void setAdditionalPassengerSurcharge(double additionalPassengerSurcharge) {
+        this.additionalPassengerSurcharge = additionalPassengerSurcharge;
     }
 
     public int getId() {

@@ -26,14 +26,14 @@ public class BookingSQLDataAccess implements IBookingDataAccess {
 
         Connection conn = DBConnectionManager.dbConnection;
         String insertStatement = "INSERT INTO golf_cart_booking" +
-                " (membership_id, booking_date, cart_id, tee_time, duration, player_count, charge)" +
+                " (membership_id, booking_date, cart_id, tee_time, number_of_rounds, player_count, charge)" +
                 " VALUES (?, ?, ?, ?, ?, ?, ?)";
         PreparedStatement stmt = conn.prepareStatement(insertStatement);
         stmt.setString(1, booking.getMembershipId());
         stmt.setTimestamp(2, Timestamp.valueOf(booking.getBookingDate()));
         stmt.setInt(3, booking.getCartId());
         stmt.setTimestamp(4, Timestamp.valueOf(booking.getTeeTime()));
-        stmt.setDouble(5, booking.getDuration());
+        stmt.setInt(5, booking.getNumberOfRounds());
         stmt.setInt(6, booking.getPlayerCount());
         stmt.setDouble(7, booking.getCharge());
 
@@ -45,7 +45,8 @@ public class BookingSQLDataAccess implements IBookingDataAccess {
         Booking result = new Booking();
 
         Connection conn = DBConnectionManager.dbConnection;
-        String query = "SELECT id, membership_id, booking_date, cart_id, tee_time, duration, player_count, charge" +
+        String query = "SELECT id, membership_id, booking_date, cart_id, tee_time, number_of_rounds, " +
+                "player_count, charge" +
                 " FROM golf_cart_booking.booking" +
                 " WHERE bookingDate = ?";
         PreparedStatement stmt = conn.prepareStatement(query);
@@ -57,7 +58,7 @@ public class BookingSQLDataAccess implements IBookingDataAccess {
             result.setBookingDate(rs.getTimestamp(3).toLocalDateTime());
             result.setCartId(rs.getInt(4));
             result.setTeeTime(rs.getTimestamp(5).toLocalDateTime());
-            result.setDuration(rs.getDouble(6));
+            result.setNumberOfRounds(rs.getInt(6));
             result.setPlayerCount(rs.getInt(7));
             result.setCharge(rs.getDouble(8));
         } else {
@@ -73,7 +74,8 @@ public class BookingSQLDataAccess implements IBookingDataAccess {
         List<Booking> result = new ArrayList<>();
 
         Connection conn = DBConnectionManager.dbConnection;
-        String query = "SELECT id, membership_id, booking_date, cart_id, tee_time, duration, player_count, charge" +
+        String query = "SELECT id, membership_id, booking_date, cart_id, tee_time, number_of_rounds," +
+                " player_count, charge" +
                 " FROM golf_cart_booking.booking" +
                 " WHERE membership_id = ?";
         PreparedStatement stmt = conn.prepareStatement(query);
@@ -85,7 +87,7 @@ public class BookingSQLDataAccess implements IBookingDataAccess {
                     rs.getTimestamp(3).toLocalDateTime(),
                     rs.getInt(4),
                     rs.getTimestamp(5).toLocalDateTime(),
-                    rs.getDouble(6),
+                    rs.getInt(6),
                     rs.getInt(7),
                     rs.getDouble(8)
             );
