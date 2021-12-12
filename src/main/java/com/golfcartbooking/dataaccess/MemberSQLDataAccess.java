@@ -21,7 +21,7 @@ public class MemberSQLDataAccess implements IMemberDataAccess{
         Connection conn = DBConnectionManager.dbConnection;
         String query = "SELECT id, full_name, phone, email, membership_id, membership_type, member_since" +
                 " FROM golf_cart_booking.member" +
-                " WHERE membershipId = ?";
+                " WHERE membership_id = ?";
         PreparedStatement stmt = conn.prepareStatement(query);
         stmt.setString(1, membershipId);
         ResultSet rs = stmt.executeQuery();
@@ -32,7 +32,7 @@ public class MemberSQLDataAccess implements IMemberDataAccess{
             result.setEmail(rs.getString(4));
             result.setMembershipId(rs.getString(5));
             result.setMembershipType(rs.getString(6));
-            result.setMembersSince(rs.getTimestamp(7).toLocalDateTime());
+            result.setMemberSince(rs.getTimestamp(7).toLocalDateTime());
         } else {
             throw new IllegalArgumentException("no cart found for " + membershipId);
         }
@@ -46,7 +46,7 @@ public class MemberSQLDataAccess implements IMemberDataAccess{
         Connection conn = DBConnectionManager.dbConnection;
         String query = "SELECT id, full_name, phone, email, membership_id, membership_type, member_since" +
                 " FROM golf_cart_booking.member" +
-                " WHERE membershipId = ?" +
+                " WHERE membership_id = ?" +
                 " AND full_name = ?";
         PreparedStatement stmt = conn.prepareStatement(query);
         stmt.setString(1, membershipId);

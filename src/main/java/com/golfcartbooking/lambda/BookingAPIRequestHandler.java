@@ -60,13 +60,15 @@ public class BookingAPIRequestHandler implements RequestHandler<APIGatewayProxyR
             String body = request.getBody();
             Booking inputBooking = gsonObj.fromJson(body, Booking.class);
             String membershipId = Utils.extractMembershipId(request);
+            inputBooking.setMembershipId(membershipId);
             // Calculate charge
             calculateCharge(inputBooking, membershipId);
             IBookingDataAccess bookingDataAccess = new BookingSQLDataAccess();
             bookingDataAccess.create(inputBooking);
-            Booking createdBooking = bookingDataAccess.getBookingByBookingDate(inputBooking.getBookingDate());
+            Booking createdBooking = bookingDataAccess.getBookingByBookingDate(inputBooking.getBookingDate(),
+                    membershipId);
             response.setBody(gsonObj.toJson(createdBooking));
-            response.setStatusCode(200);
+            response.setStatusCode(201);
         } catch (IllegalArgumentException e) {
             logger.log(gsonObj.toJson(e));
             response.setBody(gsonObj.toJson(e.getMessage()));

@@ -115,4 +115,12 @@ public class Booking {
     public void setCharge(double charge) {
         this.charge = charge;
     }
+
+    public String toString() {
+        return " membershipId: " + getMembershipId() +
+                " cartId: " + getCartId() +
+                " number of rounds: " + getNumberOfRounds() +
+                " number of players: " + getPlayerCount() +
+                " charge: " + getCharge();
+    }
 }

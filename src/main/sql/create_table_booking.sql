@@ -1,20 +1,20 @@
 -- Table: golf_cart_booking.booking
 
--- DROP TABLE golf_cart_booking.booking;
+DROP TABLE golf_cart_booking.booking;
 
 -- SEQUENCE: golf_cart_booking.booking_id_seq
 
--- DROP SEQUENCE golf_cart_booking.booking_id_seq;
+ DROP SEQUENCE golf_cart_booking.booking_id_seq;
 
--- CREATE SEQUENCE golf_cart_booking.booking_id_seq
---    INCREMENT 1
---    START 1
---    MINVALUE 1
---    MAXVALUE 2147483647
---    CACHE 1;
---
--- ALTER SEQUENCE golf_cart_booking.booking_id_seq
---    OWNER TO postgres;
+ CREATE SEQUENCE golf_cart_booking.booking_id_seq
+    INCREMENT 1
+    START 1
+    MINVALUE 1
+    MAXVALUE 2147483647
+    CACHE 1;
+
+ ALTER SEQUENCE golf_cart_booking.booking_id_seq
+    OWNER TO postgres;
 
 CREATE TABLE golf_cart_booking.booking
 (
@@ -25,7 +25,7 @@ CREATE TABLE golf_cart_booking.booking
     tee_time timestamp without time zone NOT NULL,
     number_of_rounds integer NOT NULL,
     player_count integer NOT NULL,
-    charge numeric(4,2),
+    charge numeric(8,2),
     CONSTRAINT booking_pkey PRIMARY KEY (id),
     CONSTRAINT "booking_cart_FK" FOREIGN KEY (cart_id)
         REFERENCES golf_cart_booking.cart_type (id) MATCH SIMPLE

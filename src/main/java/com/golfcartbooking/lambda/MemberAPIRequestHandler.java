@@ -48,7 +48,7 @@ public class MemberAPIRequestHandler implements RequestHandler<APIGatewayProxyRe
                                                     Context context) {
         LambdaLogger logger = context.getLogger();
         APIGatewayProxyResponseEvent response = new APIGatewayProxyResponseEvent();
-        Gson gsonObj = new Gson();
+        Gson gsonObj = Utils.getGsonWithFormatters();
 
         try {
             IMemberDataAccess memberDataAccess = new MemberSQLDataAccess();
@@ -56,6 +56,8 @@ public class MemberAPIRequestHandler implements RequestHandler<APIGatewayProxyRe
             Member member = memberDataAccess.get(membershipId);
 
             response.setBody(gsonObj.toJson(member));
+
+            logger.log(gsonObj.toJson(member));
 
             response.setStatusCode(200);
         } catch (SQLException e) {

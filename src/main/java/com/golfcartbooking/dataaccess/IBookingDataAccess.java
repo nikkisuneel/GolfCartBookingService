@@ -16,7 +16,8 @@ import java.util.List;
 public interface IBookingDataAccess {
     void create(Booking booking) throws IllegalArgumentException, SQLException;
 
-    Booking getBookingByBookingDate(LocalDateTime bookingDate) throws IllegalArgumentException, SQLException;
+    Booking getBookingByBookingDate(LocalDateTime bookingDate, String membershipId)
+            throws IllegalArgumentException, SQLException;
 
     List<Booking> getAllBookings(String membershipId)
             throws IllegalArgumentException, SQLException;

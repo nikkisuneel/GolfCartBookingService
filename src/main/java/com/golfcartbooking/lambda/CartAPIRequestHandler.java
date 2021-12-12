@@ -12,6 +12,7 @@ import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyResponseEvent
 import com.golfcartbooking.dataaccess.CartSQLDataAccess;
 import com.golfcartbooking.dataaccess.ICartDataAccess;
 import com.golfcartbooking.pojo.Cart;
+import com.golfcartbooking.util.Utils;
 import com.google.gson.Gson;
 
 import java.sql.SQLException;
@@ -49,7 +50,7 @@ public class CartAPIRequestHandler implements RequestHandler<APIGatewayProxyRequ
                                                     Context context) {
         LambdaLogger logger = context.getLogger();
         APIGatewayProxyResponseEvent response = new APIGatewayProxyResponseEvent();
-        Gson gsonObj = new Gson();
+        Gson gsonObj = Utils.getGsonWithFormatters();
 
         try {
             ICartDataAccess cartDataAccess = new CartSQLDataAccess();

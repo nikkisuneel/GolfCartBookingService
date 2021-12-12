@@ -25,7 +25,7 @@ public class BookingSQLDataAccess implements IBookingDataAccess {
         }
 
         Connection conn = DBConnectionManager.dbConnection;
-        String insertStatement = "INSERT INTO golf_cart_booking" +
+        String insertStatement = "INSERT INTO golf_cart_booking.booking" +
                 " (membership_id, booking_date, cart_id, tee_time, number_of_rounds, player_count, charge)" +
                 " VALUES (?, ?, ?, ?, ?, ?, ?)";
         PreparedStatement stmt = conn.prepareStatement(insertStatement);
@@ -41,16 +41,19 @@ public class BookingSQLDataAccess implements IBookingDataAccess {
     }
 
     @Override
-    public Booking getBookingByBookingDate(LocalDateTime bookingDate) throws IllegalArgumentException, SQLException {
+    public Booking getBookingByBookingDate(LocalDateTime bookingDate, String membershipId)
+            throws IllegalArgumentException, SQLException {
         Booking result = new Booking();
 
         Connection conn = DBConnectionManager.dbConnection;
         String query = "SELECT id, membership_id, booking_date, cart_id, tee_time, number_of_rounds, " +
                 "player_count, charge" +
                 " FROM golf_cart_booking.booking" +
-                " WHERE bookingDate = ?";
+                " WHERE booking_date = ?" +
+                " AND membership_id = ?";
         PreparedStatement stmt = conn.prepareStatement(query);
         stmt.setTimestamp(1, Timestamp.valueOf(bookingDate));
+        stmt.setString(2, membershipId);
         ResultSet rs = stmt.executeQuery();
         if (rs.next()) {
             result.setId(rs.getInt(1));

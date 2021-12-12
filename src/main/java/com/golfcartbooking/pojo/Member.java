@@ -13,7 +13,7 @@ public class Member {
     private String email;
     private String membershipId;
     private String membershipType;
-    private LocalDateTime membersSince;
+    private LocalDateTime memberSince;
 
     public Member() {}
 
@@ -28,7 +28,7 @@ public class Member {
         setEmail(email);
         setMembershipId(membershipId);
         setMembershipType(membershipType);
-        setMembersSince(memberSince);
+        setMemberSince(memberSince);
     }
 
     public Member(int id,
@@ -90,11 +90,11 @@ public class Member {
         this.membershipType = membershipType;
     }
 
-    public LocalDateTime getMembersSince() {
-        return membersSince;
+    public LocalDateTime getMemberSince() {
+        return memberSince;
     }
 
-    public void setMembersSince(LocalDateTime membersSince) {
-        this.membersSince = membersSince;
+    public void setMemberSince(LocalDateTime memberSince) {
+        this.memberSince = memberSince;
     }
 }

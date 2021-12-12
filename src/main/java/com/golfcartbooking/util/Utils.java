@@ -29,10 +29,10 @@ public class Utils {
     public static String extractMembershipId(APIGatewayProxyRequestEvent request) {
         Gson gsonObj = Utils.getGsonWithFormatters();
         Base64.Decoder decoder = Base64.getDecoder();
-        String tokenPayloadChunk = request.getHeaders().get("x-driving-range-auth").split("\\.")[1];
+        String tokenPayloadChunk = request.getHeaders().get("x-golf-cart-booking-auth").split("\\.")[1];
         String tokenPayload = new String(decoder.decode(tokenPayloadChunk));
         JsonObject jo = gsonObj.fromJson(tokenPayload, JsonObject.class);
-        String membershipId = jo.get("membership-id").getAsString();
+        String membershipId = jo.get("custom:custom:membershipId").getAsString();
         return membershipId;
     }
 
