@@ -11,6 +11,6 @@ import java.sql.SQLException;
 public interface IMemberDataAccess {
     Member get(String membershipId) throws IllegalArgumentException, SQLException;
 
-    boolean isMember(String fullName, String membershipId)
+    boolean isMember(String fullName, String membershipId, String phoneNumber)
             throws IllegalArgumentException, SQLException;
 }

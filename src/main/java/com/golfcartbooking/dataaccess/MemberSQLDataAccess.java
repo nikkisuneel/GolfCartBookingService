@@ -41,16 +41,18 @@ public class MemberSQLDataAccess implements IMemberDataAccess{
     }
 
     @Override
-    public boolean isMember(String fullName, String membershipId)
+    public boolean isMember(String fullName, String membershipId, String phoneNumber)
             throws IllegalArgumentException, SQLException {
         Connection conn = DBConnectionManager.dbConnection;
         String query = "SELECT id, full_name, phone, email, membership_id, membership_type, member_since" +
                 " FROM golf_cart_booking.member" +
                 " WHERE membership_id = ?" +
-                " AND full_name = ?";
+                " AND full_name = ?" +
+                " AND phone = ?";
         PreparedStatement stmt = conn.prepareStatement(query);
         stmt.setString(1, membershipId);
         stmt.setString(2, fullName);
+        stmt.setString(3, phoneNumber);
         ResultSet rs = stmt.executeQuery();
         if (rs.next()) {
             return true;
