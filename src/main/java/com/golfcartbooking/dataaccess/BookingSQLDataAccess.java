@@ -77,10 +77,11 @@ public class BookingSQLDataAccess implements IBookingDataAccess {
         List<Booking> result = new ArrayList<>();
 
         Connection conn = DBConnectionManager.dbConnection;
-        String query = "SELECT id, membership_id, booking_date, cart_id, tee_time, number_of_rounds," +
+        String query = "SELECT b.id, b.membership_id, b.booking_date, c.number, b.tee_time, b.number_of_rounds," +
                 " player_count, charge" +
-                " FROM golf_cart_booking.booking" +
-                " WHERE membership_id = ?";
+                " FROM golf_cart_booking.booking b, golf_cart_booking.cart_type c" +
+                " WHERE b.membership_id = ?" +
+                " AND c.id = b.cart_id";
         PreparedStatement stmt = conn.prepareStatement(query);
         stmt.setString(1, membershipId);
         ResultSet rs = stmt.executeQuery();

@@ -4,17 +4,17 @@ DROP TABLE golf_cart_booking.booking;
 
 -- SEQUENCE: golf_cart_booking.booking_id_seq
 
- DROP SEQUENCE golf_cart_booking.booking_id_seq;
+DROP SEQUENCE golf_cart_booking.booking_id_seq;
 
- CREATE SEQUENCE golf_cart_booking.booking_id_seq
-    INCREMENT 1
-    START 1
-    MINVALUE 1
-    MAXVALUE 2147483647
-    CACHE 1;
+CREATE SEQUENCE golf_cart_booking.booking_id_seq
+INCREMENT 1
+START 1
+MINVALUE 1
+MAXVALUE 2147483647
+CACHE 1;
 
- ALTER SEQUENCE golf_cart_booking.booking_id_seq
-    OWNER TO postgres;
+ALTER SEQUENCE golf_cart_booking.booking_id_seq
+OWNER TO postgres;
 
 CREATE TABLE golf_cart_booking.booking
 (
