@@ -2,15 +2,15 @@
  * Copyright (c) 2021. Nikhila (Nikki) Suneel. All Rights Reserved.
  */
 
-package com.golfcartbooking.dataaccess;
+package com.golfcartrental.dataaccess;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import com.golfcartbooking.pojo.Cart;
-import com.golfcartbooking.util.DBConnectionManager;
+import com.golfcartrental.pojo.Cart;
+import com.golfcartrental.util.DBConnectionManager;
 
 /*
  * An implementation of the ICartDataAccess interface for Cart data access from SQL
@@ -24,7 +24,7 @@ public class CartSQLDataAccess implements ICartDataAccess {
         Connection conn = DBConnectionManager.dbConnection;
         String query = "SELECT id, number, manufacturer, fuel_type, passenger_count, rate, " +
                 "additional_passenger_surcharge" +
-                " FROM golf_cart_booking.cart_type" +
+                " FROM golf_cart_rental.cart" +
                 " WHERE id = ?";
         PreparedStatement stmt = conn.prepareStatement(query);
         stmt.setInt(1, id);
@@ -51,7 +51,7 @@ public class CartSQLDataAccess implements ICartDataAccess {
         Connection conn = DBConnectionManager.dbConnection;
         String query = "SELECT id, number, manufacturer, fuel_type, passenger_count, rate, " +
                 "additional_passenger_surcharge" +
-                " FROM golf_cart_booking.cart_type" +
+                " FROM golf_cart_rental.cart" +
                 " WHERE number = ?";
         PreparedStatement stmt = conn.prepareStatement(query);
         stmt.setInt(1, number);

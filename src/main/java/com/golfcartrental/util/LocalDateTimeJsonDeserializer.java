@@ -2,7 +2,7 @@
  * Copyright (c) 2021. Nikhila (Nikki) Suneel. All Rights Reserved.
  */
 
-package com.golfcartbooking.util;
+package com.golfcartrental.util;
 
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;

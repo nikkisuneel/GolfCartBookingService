@@ -1,8 +1,8 @@
--- Database: golf_cart_booking
+-- Database: golf_cart_rental
 
--- DROP DATABASE golf_cart_booking;
+-- DROP DATABASE golf_cart_rental;
 
-CREATE DATABASE golf_cart_booking
+CREATE DATABASE golf_cart_rental
     WITH
     OWNER = postgres
     ENCODING = 'UTF8'

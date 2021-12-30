@@ -2,18 +2,18 @@
  * Copyright (c) 2021. Nikhila (Nikki) Suneel. All Rights Reserved.
  */
 
-package com.golfcartbooking.lambda;
+package com.golfcartrental.lambda;
 
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.LambdaLogger;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyRequestEvent;
 import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyResponseEvent;
-import com.golfcartbooking.dataaccess.*;
-import com.golfcartbooking.pojo.Booking;
-import com.golfcartbooking.pojo.Cart;
-import com.golfcartbooking.pojo.Member;
-import com.golfcartbooking.util.Utils;
+import com.golfcartrental.dataaccess.*;
+import com.golfcartrental.pojo.CartRental;
+import com.golfcartrental.pojo.Cart;
+import com.golfcartrental.pojo.Member;
+import com.golfcartrental.util.Utils;
 import com.google.gson.Gson;
 
 import java.sql.SQLException;
@@ -23,7 +23,7 @@ import java.util.Locale;
 /*
  * A Lambda handler for processing Ball Picking Activity APIs
  */
-public class BookingAPIRequestHandler implements RequestHandler<APIGatewayProxyRequestEvent, APIGatewayProxyResponseEvent> {
+public class CartRentalAPIRequestHandler implements RequestHandler<APIGatewayProxyRequestEvent, APIGatewayProxyResponseEvent> {
     public APIGatewayProxyResponseEvent handleRequest(APIGatewayProxyRequestEvent apiGatewayProxyRequestEvent,
                                                       Context context) {
         LambdaLogger logger = context.getLogger();
@@ -58,16 +58,16 @@ public class BookingAPIRequestHandler implements RequestHandler<APIGatewayProxyR
 
         try {
             String body = request.getBody();
-            Booking inputBooking = gsonObj.fromJson(body, Booking.class);
+            CartRental inputCartRental = gsonObj.fromJson(body, CartRental.class);
             String membershipId = Utils.extractMembershipId(request);
-            inputBooking.setMembershipId(membershipId);
+            inputCartRental.setMembershipId(membershipId);
             // Calculate charge
-            calculateCharge(inputBooking, membershipId);
-            IBookingDataAccess bookingDataAccess = new BookingSQLDataAccess();
-            bookingDataAccess.create(inputBooking);
-            Booking createdBooking = bookingDataAccess.getBookingByBookingDate(inputBooking.getBookingDate(),
+            calculateCharge(inputCartRental, membershipId);
+            ICartRentalDataAccess cartRentalDataAccess = new CartRentalSQLDataAccess();
+            cartRentalDataAccess.create(inputCartRental);
+            CartRental createdCartRental = cartRentalDataAccess.getCartRentalByRentalDate(inputCartRental.getRentalDate(),
                     membershipId);
-            response.setBody(gsonObj.toJson(createdBooking));
+            response.setBody(gsonObj.toJson(createdCartRental));
             response.setStatusCode(201);
         } catch (IllegalArgumentException e) {
             logger.log(gsonObj.toJson(e));
@@ -82,19 +82,19 @@ public class BookingAPIRequestHandler implements RequestHandler<APIGatewayProxyR
         }
     }
 
-    private void calculateCharge(Booking inputBooking, String membershipId) throws SQLException {
+    private void calculateCharge(CartRental inputCartRental, String membershipId) throws SQLException {
         IMemberDataAccess memberDataAccess = new MemberSQLDataAccess();
         Member member = memberDataAccess.get(membershipId);
         ICartDataAccess cartDataAccess = new CartSQLDataAccess();
-        Cart cart = cartDataAccess.getCart(inputBooking.getCartId());
+        Cart cart = cartDataAccess.getCart(inputCartRental.getCartId());
         double charge = 0;
         if (!member.getMembershipType().equalsIgnoreCase("Lifetime")) {
-            charge = (cart.getRate() * inputBooking.getNumberOfRounds()) +
+            charge = (cart.getRate() * inputCartRental.getNumberOfRounds()) +
                     (cart.getAdditionalPassengerSurcharge()
-                            * inputBooking.getNumberOfRounds()
-                            * inputBooking.getPlayerCount());
+                            * inputCartRental.getNumberOfRounds()
+                            * inputCartRental.getPlayerCount());
         }
-        inputBooking.setCharge(charge);
+        inputCartRental.setCharge(charge);
     }
 
     private APIGatewayProxyResponseEvent processGet(APIGatewayProxyRequestEvent request,
@@ -105,9 +105,9 @@ public class BookingAPIRequestHandler implements RequestHandler<APIGatewayProxyR
 
         try {
             String membershipId = Utils.extractMembershipId(request);
-            IBookingDataAccess bookingDataAccess = new BookingSQLDataAccess();
-            List<Booking> bookings = bookingDataAccess.getAllBookings(membershipId);
-            response.setBody(gsonObj.toJson(bookings));
+            ICartRentalDataAccess cartRentalDataAccess = new CartRentalSQLDataAccess();
+            List<CartRental> cartRentals = cartRentalDataAccess.getAllCartRentals(membershipId);
+            response.setBody(gsonObj.toJson(cartRentals));
             response.setStatusCode(200);
         } catch (SQLException e) {
             logger.log(gsonObj.toJson(e));

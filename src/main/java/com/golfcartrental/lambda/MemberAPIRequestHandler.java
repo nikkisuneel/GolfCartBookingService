@@ -2,16 +2,16 @@
  * Copyright (c) 2021. Nikhila (Nikki) Suneel. All Rights Reserved.
  */
 
-package com.golfcartbooking.lambda;
+package com.golfcartrental.lambda;
 
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.LambdaLogger;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyRequestEvent;
 import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyResponseEvent;
-import com.golfcartbooking.dataaccess.*;
-import com.golfcartbooking.pojo.Member;
-import com.golfcartbooking.util.Utils;
+import com.golfcartrental.dataaccess.*;
+import com.golfcartrental.pojo.Member;
+import com.golfcartrental.util.Utils;
 import com.google.gson.Gson;
 
 import java.sql.SQLException;

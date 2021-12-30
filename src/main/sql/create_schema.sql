@@ -1,6 +1,6 @@
--- SCHEMA: golf_cart_booking
+-- SCHEMA: golf_cart_rental
 
--- DROP SCHEMA golf_cart_booking ;
+-- DROP SCHEMA golf_cart_rental ;
 
-CREATE SCHEMA golf_cart_booking
+CREATE SCHEMA golf_cart_rental
     AUTHORIZATION postgres;

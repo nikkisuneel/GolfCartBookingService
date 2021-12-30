@@ -2,31 +2,31 @@
  * Copyright (c) 2021. Nikhila (Nikki) Suneel. All Rights Reserved.
  */
 
-package com.golfcartbooking.pojo;
+package com.golfcartrental.pojo;
 
 import java.time.LocalDateTime;
 
-public class Booking {
+public class CartRental {
     private int id;
     private String membershipId;
-    private LocalDateTime bookingDate;
+    private LocalDateTime rentalDate;
     private int cartId;
     private LocalDateTime teeTime;
     private int numberOfRounds;
     private int playerCount;
     private double charge;
 
-    public Booking() {}
+    public CartRental() {}
 
-    public Booking(String membershipId,
-                   LocalDateTime bookingDate,
-                   int cartId,
-                   LocalDateTime teeTime,
-                   int numberOfRounds,
-                   int playerCount,
-                   double charge) {
+    public CartRental(String membershipId,
+                      LocalDateTime rentalDate,
+                      int cartId,
+                      LocalDateTime teeTime,
+                      int numberOfRounds,
+                      int playerCount,
+                      double charge) {
         setMembershipId(membershipId);
-        setBookingDate(bookingDate);
+        setRentalDate(rentalDate);
         setCartId(cartId);
         setTeeTime(teeTime);
         setNumberOfRounds(numberOfRounds);
@@ -34,15 +34,15 @@ public class Booking {
         setCharge(charge);
     }
 
-    public Booking(int id,
-                   String membershipId,
-                   LocalDateTime bookingDate,
-                   int cartId,
-                   LocalDateTime teeTime,
-                   int numberOfRounds,
-                   int playerCount,
-                   double charge) {
-        this(membershipId, bookingDate, cartId, teeTime, numberOfRounds, playerCount, charge);
+    public CartRental(int id,
+                      String membershipId,
+                      LocalDateTime rentalDate,
+                      int cartId,
+                      LocalDateTime teeTime,
+                      int numberOfRounds,
+                      int playerCount,
+                      double charge) {
+        this(membershipId, rentalDate, cartId, teeTime, numberOfRounds, playerCount, charge);
         setId(id);
     }
 
@@ -62,12 +62,12 @@ public class Booking {
         this.membershipId = membershipId;
     }
 
-    public LocalDateTime getBookingDate() {
-        return bookingDate;
+    public LocalDateTime getRentalDate() {
+        return rentalDate;
     }
 
-    public void setBookingDate(LocalDateTime bookingDate) {
-        this.bookingDate = bookingDate;
+    public void setRentalDate(LocalDateTime rentalDate) {
+        this.rentalDate = rentalDate;
     }
 
     public int getCartId() {

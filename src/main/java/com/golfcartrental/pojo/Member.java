@@ -2,7 +2,7 @@
  * Copyright (c) 2021. Nikhila (Nikki) Suneel. All Rights Reserved.
  */
 
-package com.golfcartbooking.pojo;
+package com.golfcartrental.pojo;
 
 import java.time.LocalDateTime;
 

@@ -2,10 +2,10 @@
  * Copyright (c) 2021. Nikhila (Nikki) Suneel. All Rights Reserved.
  */
 
-package com.golfcartbooking.dataaccess;
+package com.golfcartrental.dataaccess;
 
-import com.golfcartbooking.pojo.Member;
-import com.golfcartbooking.util.DBConnectionManager;
+import com.golfcartrental.pojo.Member;
+import com.golfcartrental.util.DBConnectionManager;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -20,7 +20,7 @@ public class MemberSQLDataAccess implements IMemberDataAccess{
 
         Connection conn = DBConnectionManager.dbConnection;
         String query = "SELECT id, full_name, phone, email, membership_id, membership_type, member_since" +
-                " FROM golf_cart_booking.member" +
+                " FROM golf_cart_rental.member" +
                 " WHERE membership_id = ?";
         PreparedStatement stmt = conn.prepareStatement(query);
         stmt.setString(1, membershipId);
@@ -45,7 +45,7 @@ public class MemberSQLDataAccess implements IMemberDataAccess{
             throws IllegalArgumentException, SQLException {
         Connection conn = DBConnectionManager.dbConnection;
         String query = "SELECT id, full_name, phone, email, membership_id, membership_type, member_since" +
-                " FROM golf_cart_booking.member" +
+                " FROM golf_cart_rental.member" +
                 " WHERE membership_id = ?" +
                 " AND full_name = ?" +
                 " AND phone = ?";

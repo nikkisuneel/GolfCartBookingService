@@ -1,20 +1,20 @@
 {
   "swagger": "2.0",
   "info": {
-    "description": "Golf Cart Booking API specification",
-    "title": "GolfCartBooking",
+    "description": "Golf Cart Rental API specification",
+    "title": "GolfCartRental",
     "version": "1.0"
   },
   "schemes": [
       "https"
   ],
   "paths": {
-    "/bookings": {
+    "/cart-rentals": {
       "get": {
         "tags": [
-            "bookings"
+            "cart-rentals"
         ],
-        "summary": "List all bookings",
+        "summary": "List all cart rentals",
         "produces": [
             "application/json"
         ],
@@ -32,7 +32,7 @@
                   "membershipId": {
                     "type": "string"
                   },
-                  "bookingDate": {
+                  "rentalDate": {
                     "type": "string",
                     "format": "date-time"
                   },
@@ -72,7 +72,7 @@
               }
             }
           },
-          "uri": "http://golfcartbooking.execute-api.us-east-1.amazonaws.com/golfcartbooking/bookings",
+          "uri": "http://golfcartrental.execute-api.us-east-1.amazonaws.com/golfcartrental/cart_rentals",
           "passthroughBehavior": "when_no_match",
           "httpMethod": "GET",
           "type": "http"
@@ -80,10 +80,10 @@
       },
       "post": {
         "tags": [
-            "bookings"
+            "cart-rentals"
         ],
-        "operationId": "CreateBooking",
-        "summary": "Create a booking",
+        "operationId": "CreateCartRental",
+        "summary": "Create a cart rental",
         "consumes": [
             "application/json"
         ],
@@ -93,7 +93,7 @@
         "parameters": [
           {
             "in": "body",
-            "name": "NewBooking",
+            "name": "NewCartRental",
             "required": true,
             "schema": {
               "type": "object",
@@ -101,7 +101,7 @@
                 "membershipId": {
                   "type": "string"
                 },
-                "bookingData": {
+                "rentalDate": {
                   "type": "string",
                   "format": "date-time"
                 },
@@ -131,7 +131,7 @@
             "schema": {
               "type": "object",
               "properties": {
-                "booking": {
+                "cartRental": {
                   "type": "object",
                   "properties": {
                     "id": {
@@ -140,7 +140,7 @@
                     "membershipId": {
                       "type": "string"
                     },
-                    "bookingDate": {
+                    "rentalDate": {
                       "type": "string",
                       "format": "date-time"
                     },
@@ -184,7 +184,7 @@
               }
             }
           },
-          "uri": "http://golfcartbooking.execute-api.us-east-1.amazonaws.com/golfcartbooking/bookings",
+          "uri": "http://golfcartrental.execute-api.us-east-1.amazonaws.com/golfcartrental/cart-rentals",
           "passthroughBehavior": "when_no_match",
           "httpMethod": "POST",
           "type": "http"
@@ -252,7 +252,7 @@
               }
             }
           },
-          "uri": "http://golfcartbooking.execute-api.us-east-1.amazonaws.com/golfcartbooking/carts",
+          "uri": "http://golfcartrental.execute-api.us-east-1.amazonaws.com/golfcartrental/carts",
           "passthroughBehavior": "when_no_match",
           "httpMethod": "GET",
           "type": "http"
@@ -324,7 +324,7 @@
           "requestParameters": {
             "integration.request.path.cartId": "method.request.path.cartId"
           },
-          "uri": "http://golfcartbooking.execute-api.us-east-1.amazonaws.com/golfcartbooking/carts/{cartId}",
+          "uri": "http://golfcartrental.execute-api.us-east-1.amazonaws.com/golfcartrental/carts/{cartId}",
           "passthroughBehavior": "when_no_match",
           "httpMethod": "GET",
           "type": "http"
@@ -387,7 +387,7 @@
               }
             }
           },
-          "uri": "http://golfcartbooking.execute-api.us-east-1.amazonaws.com/golfcartbooking/membership",
+          "uri": "http://golfcartrental.execute-api.us-east-1.amazonaws.com/golfcartrental/membership",
           "passthroughBehavior": "when_no_match",
           "httpMethod": "GET",
           "type": "http"
@@ -396,7 +396,7 @@
     }
   },
   "definitions": {
-    "Bookings": {
+    "CartRentals": {
       "type": "array",
       "items": {
         "type": "object",
@@ -407,7 +407,7 @@
           "membershipId": {
             "type": "string"
           },
-          "bookingDate": {
+          "rentalDate": {
             "type": "string",
             "format": "date-time"
           },
@@ -430,10 +430,10 @@
         }
       }
     },
-    "NewBookingResponse": {
+    "NewCartRentalResponse": {
       "type": "object",
       "properties": {
-        "booking": {
+        "cartRental": {
           "type": "object",
           "properties": {
             "id": {
@@ -442,7 +442,7 @@
             "membershipId": {
               "type": "string"
             },
-            "bookingDate": {
+            "rentalDate": {
               "type": "string",
               "format": "date-time"
             },
@@ -469,7 +469,7 @@
         }
       }
     },
-    "Booking": {
+    "CartRental": {
       "type": "object",
       "properties": {
         "id": {
@@ -478,7 +478,7 @@
         "membershipId": {
           "type": "string"
         },
-        "bookingDate": {
+        "rentalDate": {
           "type": "string",
           "format": "date-time"
         },
@@ -500,13 +500,13 @@
         }
       }
     },
-    "NewBooking": {
+    "NewCartRental": {
       "type": "object",
       "properties": {
         "membershipId": {
           "type": "string"
         },
-        "bookingData": {
+        "rentalDate": {
           "type": "string",
           "format": "date-time"
         },
@@ -640,44 +640,44 @@
         },
         "properties": {
           "info": {
-            "description": "Golf Cart Booking API"
+            "description": "Golf Cart Rental API"
           }
         }
       },
       {
         "location": {
           "type": "METHOD",
-          "path": "/bookings",
+          "path": "/cart-rentals",
           "method": "GET"
         },
         "properties": {
           "tags": [
-              "bookings"
+              "cart-rentals"
           ],
-          "summary": "List all bookings"
+          "summary": "List all cart rentals"
         }
       },
       {
         "location": {
           "type": "METHOD",
-          "path": "/bookings",
+          "path": "/cart-rentals",
           "method": "POST"
         },
         "properties": {
           "tags": [
-              "bookings"
+              "cart-rentals"
           ],
-          "summary": "Create a booking"
+          "summary": "Create a cart rental"
         }
       },
       {
         "location": {
           "type": "REQUEST_BODY",
-          "path": "/bookings",
+          "path": "/cart-rentals",
           "method": "POST"
         },
         "properties": {
-          "description": "Booking object that needs to be added"
+          "description": "Cart Rental object that needs to be added"
         }
       },
       {

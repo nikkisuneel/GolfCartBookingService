@@ -1,24 +1,24 @@
--- Table: golf_cart_booking.member
+-- Table: golf_cart_rental.member
 
- DROP TABLE golf_cart_booking.member;
+-- DROP TABLE golf_cart_rental.member;
 
- SEQUENCE: golf_cart_booking.member_id_seq
+-- SEQUENCE: golf_cart_rental.member_id_seq
 
- DROP SEQUENCE golf_cart_booking.member_id_seq;
+-- DROP SEQUENCE golf_cart_rental.member_id_seq;
 
- CREATE SEQUENCE golf_cart_booking.member_id_seq
+ CREATE SEQUENCE golf_cart_rental.member_id_seq
     INCREMENT 1
     START 1
     MINVALUE 1
     MAXVALUE 2147483647
     CACHE 1;
 
- ALTER SEQUENCE golf_cart_booking.member_id_seq
+ ALTER SEQUENCE golf_cart_rental.member_id_seq
     OWNER TO postgres;
 
-CREATE TABLE golf_cart_booking.member
+CREATE TABLE golf_cart_rental.member
 (
-    id integer NOT NULL DEFAULT nextval('golf_cart_booking.member_id_seq'::regclass),
+    id integer NOT NULL DEFAULT nextval('golf_cart_rental.member_id_seq'::regclass),
     full_name character varying(100) COLLATE pg_catalog."default" NOT NULL,
     phone character varying(50) COLLATE pg_catalog."default" NOT NULL,
     email character varying(100) COLLATE pg_catalog."default" NOT NULL,
@@ -31,5 +31,5 @@ CREATE TABLE golf_cart_booking.member
 
 TABLESPACE pg_default;
 
-ALTER TABLE golf_cart_booking.member
+ALTER TABLE golf_cart_rental.member
     OWNER to postgres;

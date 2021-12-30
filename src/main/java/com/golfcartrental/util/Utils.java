@@ -2,7 +2,7 @@
  * Copyright (c) 2021. Nikhila (Nikki) Suneel. All Rights Reserved.
  */
 
-package com.golfcartbooking.util;
+package com.golfcartrental.util;
 
 import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyRequestEvent;
 import com.google.gson.Gson;
@@ -29,7 +29,7 @@ public class Utils {
     public static String extractMembershipId(APIGatewayProxyRequestEvent request) {
         Gson gsonObj = Utils.getGsonWithFormatters();
         Base64.Decoder decoder = Base64.getDecoder();
-        String tokenPayloadChunk = request.getHeaders().get("x-golf-cart-booking-auth").split("\\.")[1];
+        String tokenPayloadChunk = request.getHeaders().get("x-golf-cart-rental-auth").split("\\.")[1];
         String tokenPayload = new String(decoder.decode(tokenPayloadChunk));
         JsonObject jo = gsonObj.fromJson(tokenPayload, JsonObject.class);
         String membershipId = jo.get("custom:custom:membershipId").getAsString();
