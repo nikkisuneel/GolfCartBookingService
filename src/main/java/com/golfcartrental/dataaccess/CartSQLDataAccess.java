@@ -22,10 +22,11 @@ public class CartSQLDataAccess implements ICartDataAccess {
         Cart result = new Cart();
 
         Connection conn = DBConnectionManager.dbConnection;
-        String query = "SELECT id, number, manufacturer, fuel_type, passenger_count, rate, " +
-                "additional_passenger_surcharge" +
-                " FROM golf_cart_rental.cart" +
-                " WHERE id = ?";
+        String query = "SELECT c.id, c.number, ct.manufacturer, ct.fuel_type, ct.passenger_count, ct.rate, " +
+                "ct.additional_passenger_surcharge" +
+                " FROM golf_cart_rental.cart c, golf_cart_rental.cart_type ct" +
+                " WHERE c.id = ?" +
+                " AND c.cart_type_id = ct.id";
         PreparedStatement stmt = conn.prepareStatement(query);
         stmt.setInt(1, id);
         ResultSet rs = stmt.executeQuery();
@@ -49,10 +50,11 @@ public class CartSQLDataAccess implements ICartDataAccess {
         Cart result = new Cart();
 
         Connection conn = DBConnectionManager.dbConnection;
-        String query = "SELECT id, number, manufacturer, fuel_type, passenger_count, rate, " +
-                "additional_passenger_surcharge" +
-                " FROM golf_cart_rental.cart" +
-                " WHERE number = ?";
+        String query = "SELECT c.id, c.number, ct.manufacturer, ct.fuel_type, ct.passenger_count, ct.rate, " +
+                "ct.additional_passenger_surcharge" +
+                " FROM golf_cart_rental.cart c, golf_cart_rental.cart_type ct" +
+                " WHERE c.number = ?" +
+                " AND c.cart_type_id = ct.id";
         PreparedStatement stmt = conn.prepareStatement(query);
         stmt.setInt(1, number);
         ResultSet rs = stmt.executeQuery();

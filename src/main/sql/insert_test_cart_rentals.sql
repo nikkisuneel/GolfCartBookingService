@@ -24,7 +24,8 @@ WHERE CAST(EXTRACT(DAY FROM date_trunc('day', d)) as INTEGER) % 3 = 0;
 
 UPDATE golf_cart_rental.rental b
 SET charge = (
-    SELECT c.rate * b.number_of_rounds + (c.additional_passenger_surcharge * b.number_of_rounds)
-    FROM golf_cart_rental.cart c
+    SELECT ct.rate * b.number_of_rounds + (ct.additional_passenger_surcharge * b.number_of_rounds)
+    FROM golf_cart_rental.cart c, golf_cart_rental.cart_type ct
     WHERE c.id = b.cart_id
+      AND c.cart_type_id = ct.id
 );
