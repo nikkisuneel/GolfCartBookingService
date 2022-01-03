@@ -24,7 +24,7 @@ CREATE TABLE golf_cart_rental.cart
             REFERENCES golf_cart_rental.cart_type (id) MATCH SIMPLE
             ON UPDATE NO ACTION
             ON DELETE NO ACTION
-            NOT VALID,
+            NOT VALID
 )
 
 TABLESPACE pg_default;

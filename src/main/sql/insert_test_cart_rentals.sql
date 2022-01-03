@@ -7,10 +7,10 @@ INSERT INTO golf_cart_rental.rental
 SELECT
     'z1000',
 	d at time zone 'PST' rental_date,
-	(array[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20])[floor(random() * 20 + 1)] cart_id,
+	floor(random() * 41) cart_id,
 	date_trunc('day', d) + '10:00:00' tee_time,
 	floor(random() * 3 + 1) number_of_rounds,
-	floor(random() * 4 + 1) player_count
+	floor(random() * 2 + 1) player_count
 FROM generate_series(
   current_timestamp - interval '1 year',
   current_timestamp,
