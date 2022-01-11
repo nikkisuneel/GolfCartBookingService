@@ -5,7 +5,7 @@ DELETE FROM golf_cart_rental.rental;
 INSERT INTO golf_cart_rental.rental
     (membership_id, rental_date, cart_id, tee_time, number_of_rounds, player_count)
 SELECT
-    'z1000',
+    'A042',
 	d at time zone 'PST' rental_date,
 	floor(random() * 41) cart_id,
 	date_trunc('day', d) + '10:00:00' tee_time,
