@@ -7,7 +7,7 @@ INSERT INTO golf_cart_rental.cart_type(
 --
 INSERT INTO golf_cart_rental.cart_type(
 	manufacturer, fuel_type, passenger_count, rate, additional_passenger_surcharge)
-	VALUES ('E-Z-Go', 'LPG', 2, 12.00, 8.00);
+	VALUES ('E-Z-Go', 'Propane', 2, 12.00, 8.00);
 --
 INSERT INTO golf_cart_rental.cart_type(
 	manufacturer, fuel_type, passenger_count, rate, additional_passenger_surcharge)
@@ -19,7 +19,7 @@ INSERT INTO golf_cart_rental.cart_type(
 --
 INSERT INTO golf_cart_rental.cart_type(
 	manufacturer, fuel_type, passenger_count, rate, additional_passenger_surcharge)
-	VALUES ('E-Z-Go', 'LPG', 4, 18.00, 8.00);
+	VALUES ('E-Z-Go', 'Propane', 4, 18.00, 8.00);
 --
 INSERT INTO golf_cart_rental.cart_type(
 	manufacturer, fuel_type, passenger_count, rate, additional_passenger_surcharge)
@@ -33,7 +33,7 @@ INSERT INTO golf_cart_rental.cart_type(
 --
 INSERT INTO golf_cart_rental.cart_type(
 	manufacturer, fuel_type, passenger_count, rate, additional_passenger_surcharge)
-	VALUES ('Yamaha', 'LPG', 2, 12.00, 8.00);
+	VALUES ('Yamaha', 'Propane', 2, 12.00, 8.00);
 --
 INSERT INTO golf_cart_rental.cart_type(
 	manufacturer, fuel_type, passenger_count, rate, additional_passenger_surcharge)
@@ -45,7 +45,7 @@ INSERT INTO golf_cart_rental.cart_type(
 --
 INSERT INTO golf_cart_rental.cart_type(
 	manufacturer, fuel_type, passenger_count, rate, additional_passenger_surcharge)
-	VALUES ('Yamaha', 'LPG', 4, 18.00, 8.00);
+	VALUES ('Yamaha', 'Propane', 4, 18.00, 8.00);
 --
 INSERT INTO golf_cart_rental.cart_type(
 	manufacturer, fuel_type, passenger_count, rate, additional_passenger_surcharge)
@@ -69,7 +69,7 @@ INSERT INTO golf_cart_rental.cart_type(
 --
 INSERT INTO golf_cart_rental.cart_type(
 	manufacturer, fuel_type, passenger_count, rate, additional_passenger_surcharge)
-	VALUES ('ACG Inc.', 'LPG', 2, 12.00, 8.00);
+	VALUES ('ACG Inc.', 'Propane', 2, 12.00, 8.00);
 --
 INSERT INTO golf_cart_rental.cart_type(
 	manufacturer, fuel_type, passenger_count, rate, additional_passenger_surcharge)
@@ -81,7 +81,7 @@ INSERT INTO golf_cart_rental.cart_type(
 --
 INSERT INTO golf_cart_rental.cart_type(
 	manufacturer, fuel_type, passenger_count, rate, additional_passenger_surcharge)
-	VALUES ('ACG Inc.', 'LPG', 4, 18.00, 8.00);
+	VALUES ('ACG Inc.', 'Propane', 4, 18.00, 8.00);
 --
 INSERT INTO golf_cart_rental.cart_type(
 	manufacturer, fuel_type, passenger_count, rate, additional_passenger_surcharge)

@@ -53,8 +53,8 @@ public class Cart {
 
         if (!fuelType.equalsIgnoreCase("gas")
                 && !fuelType.equalsIgnoreCase("electric")
-                && !fuelType.equalsIgnoreCase("lpg")) {
-            throw new IllegalArgumentException("Fuel type must be Gas, Electric or LPG");
+                && !fuelType.equalsIgnoreCase("propane")) {
+            throw new IllegalArgumentException("Fuel type must be Gas, Electric or Propane");
         }
 
         this.fuelType = fuelType;
