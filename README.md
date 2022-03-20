@@ -1,4 +1,4 @@
-## Driving Range Golfelf's server side implementation
+## Golf Cart rental service implementation
 
 This is the implementation of the com.golfcartrental server-side components. The server-side implementation uses AWS' api-gateway, lambda and RDS (Postgres) to provide APIs.
 
